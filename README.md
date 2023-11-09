@@ -124,7 +124,13 @@ It is a log -- Thu Nov  9 09:50:13 UTC 2023
 It is a log -- Thu Nov  9 09:50:19 UTC 2023
 It is a log -- Thu Nov  9 09:50:24 UTC 2023
 ```
-Файл остался после удаления pv, т.к. в нем использовался persistentVolumeReclaimPolicy: Retain, что позволяет сохранить файлы после удаления pv. Если бы было Delete файл удалился бы.
+
+Файл остался после удаления pv, т.к. в нем использовался persistentVolumeReclaimPolicy: Retain, что позволяет сохранить файлы после удаления pv. Если бы было Delete файл удалился бы.    
+
+[Deployment](https://github.com/bonanzza-web/kuber-homeworks2.2/blob/main/files/deploy.yaml)    
+[PVC](https://github.com/bonanzza-web/kuber-homeworks2.2/blob/main/files/pvc.yaml)
+[PV](https://github.com/bonanzza-web/kuber-homeworks2.2/blob/main/files/pv.yaml)
+
 ------
 
 ### Задание 2
@@ -175,6 +181,11 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 data-nfs-server-provisioner-0              1Gi        RWO            Retain           Bound    nfs-server-provisioner/data-nfs-server-provisioner-0                           20h
 pvc-c391da8f-3a49-4e61-a39b-1e2c077e85a9   1Gi        RWO            Delete           Bound    default/pvc-nfs                                        sc-nfs                  11m
 ```
+
+
+[Deployment](https://github.com/bonanzza-web/kuber-homeworks2.2/blob/main/files/deploy2.yaml)
+[PVC](https://github.com/bonanzza-web/kuber-homeworks2.2/blob/main/files/pvc2.yaml)
+[Storage class](https://github.com/bonanzza-web/kuber-homeworks2.2/blob/main/files/sc.yaml)
 
 ------
 
