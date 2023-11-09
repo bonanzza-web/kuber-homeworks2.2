@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-deploy
+  labels:
+    app: multitools
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multitools
+  template:
+    metadata:
+      labels:
+        app: multitools
+    spec:
+      containers:
+        - name: multitools
+          image: wbitt/network-multitool
+          volumeMounts:
+          - name: pvc-nfs
+            mountPath: /pvc-volume
+      volumes:
+      - name: pvc-nfs
+        persistentVolumeClaim:
+          claimName: pvc-nfs

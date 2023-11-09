@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busy-mult
+  labels:
+    app: busy-mult
+spec:
+  selector:
+    matchLabels:
+      app: busy-mult
+  template:
+    metadata:
+      labels:
+        app: busy-mult
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:latest
+        ports:
+        - containerPort: 8080
+        command: ['sh', '-c', 'while true; do echo "It is a log -- $(date)" >> /tmp/logs/logs.txt; sleep 5; done']
+        volumeMounts:
+        - name: pvcshka
+          mountPath: /tmp/logs
+
+      - name: multitools
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 80
+        env:
+        - name: HTTP_PORT
+          value: "80"
+        volumeMounts:
+        - name: pvcshka
+          mountPath: /tmp/logs
+
+      volumes:
+      - name: pvcshka
+        persistentVolumeClaim:
+          claimName: pvcshka
